@@ -3,7 +3,7 @@ import iconGecko from '~/assets/svgs/firefox.svg?raw'
 import iconWebkit from '~/assets/svgs/safari.svg?raw'
 import iconChromium from '~/assets/svgs/chrome.svg?raw'
 import iconGeneric from '~/assets/svgs/generic.svg?raw'
-import iconWindows from '~/assets/svgs/windows.svg?raw'
+import iconWindows10 from '~/assets/svgs/windows.svg?raw'
 import iconMacos from '~/assets/svgs/macos.svg?raw'
 import iconAndroid from '~/assets/svgs/android.svg?raw'
 import iconLinux from '~/assets/svgs/linux.svg?raw'
@@ -25,7 +25,15 @@ useSeoMeta({
   ogType: 'website'
 })
 
+const windowsArch = ref<'x64' | 'arm64'>('x64')
 const linuxFormat = ref<'AppImage' | '.deb' | '.rpm'>('AppImage')
+
+const iconWindows11 = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#0078d4" d="M67.328 67.331h60.669V128H67.328zm-67.325 0h60.669V128H.003zM67.328 0h60.669v60.669H67.328zM.003 0h60.669v60.669H.003z"/></svg>'
+
+const windowsArchitectures = [
+  { label: 'x64' as const, matcher: /_x64(?:_|\b).*\.msi$/i, icon: iconWindows10 },
+  { label: 'arm64' as const, matcher: /_arm64(?:_|\b).*\.msi$/i, icon: iconWindows11 },
+]
 
 const linuxFormats = [
   { label: 'AppImage' as const, matcher: /\.AppImage$/i },
@@ -34,14 +42,12 @@ const linuxFormats = [
 ]
 
 const otherPlatforms = [
-  { name: 'Windows', matcher: /windows|win|\.exe|\.msi/i },
   { name: 'macOS', matcher: /macos|darwin|\.dmg|\.pkg/i },
   { name: 'Android', matcher: /android|\.apk|\.aab/i },
 ]
 
-// ── Icônes plateformes (Windows / macOS / Android) ────────────
+// ── Icônes plateformes (macOS / Android) ────────────
 const platformIcons: Record<string, string> = {
-  Windows: iconWindows,
   macOS: iconMacos,
   Android: iconAndroid,
 }
@@ -52,6 +58,17 @@ const { data: latestRelease } = await useFetch<Release>('https://qxch.at/api/rel
   lazy: false,
   cache: 'no-store',
   default: () => ({ tag_name: '', html_url: 'https://github.com/lqxp/app/releases', assets: [] })
+})
+
+const selectedWindowsArchitecture = computed(() => windowsArchitectures.find(item => item.label === windowsArch.value)!)
+
+const windowsAsset = computed(() => {
+  const assets = latestRelease.value?.assets ?? []
+  const asset = assets.find(item => selectedWindowsArchitecture.value.matcher.test(item.name))
+  return {
+    file: asset?.name ?? 'Browse releases',
+    url: asset?.browser_download_url ?? 'https://github.com/lqxp/app/releases',
+  }
 })
 
 const linuxAsset = computed(() => {
@@ -95,7 +112,7 @@ onMounted(() => {
 
   const engine = isChromium ? 'chromium' : isGecko ? 'gecko' : isWebKit ? 'webkit' : 'generic'
 
-  if (browserIcon.value) browserIcon.value.innerHTML = browserIcons[engine]
+  if (browserIcon.value) browserIcon.value.innerHTML = browserIcons[engine] ?? iconGeneric
 })
 </script>
 
@@ -121,7 +138,22 @@ onMounted(() => {
       <span class="download-card__arrow">→</span>
     </a>
 
-    <!-- ── Windows, macOS, Android cards ───────────────────────── -->
+    <!-- ── Windows card (with architecture selector) ───────────── -->
+    <a class="download-card" :href="windowsAsset.url" target="_blank" rel="noreferrer">
+      <span class="download-card__icon" aria-hidden="true" v-html="selectedWindowsArchitecture.icon"></span>
+
+      <span class="download-card__platform">Windows</span>
+
+      <div class="format-pills" @click.stop>
+        <button v-for="arch in windowsArchitectures" :key="arch.label" class="pill" :class="{ active: windowsArch === arch.label }"
+          @click.prevent="windowsArch = arch.label">{{ arch.label }}</button>
+      </div>
+
+      <span class="download-card__file">{{ windowsAsset.file }}</span>
+      <span class="download-card__arrow" aria-hidden="true">↓</span>
+    </a>
+
+    <!-- ── macOS, Android cards ────────────────────────────────── -->
     <a v-for="item in downloads" :key="item.name" class="download-card" :href="item.url" target="_blank"
       rel="noreferrer">
       <span class="download-card__icon" aria-hidden="true" v-html="platformIcons[item.name]"></span>
