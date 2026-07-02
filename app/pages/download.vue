@@ -3,7 +3,7 @@ import iconGecko from '~/assets/svgs/firefox.svg?raw'
 import iconWebkit from '~/assets/svgs/safari.svg?raw'
 import iconChromium from '~/assets/svgs/chrome.svg?raw'
 import iconGeneric from '~/assets/svgs/generic.svg?raw'
-import iconWindows10 from '~/assets/svgs/windows.svg?raw'
+import iconWindows from '~/assets/svgs/windows.svg?raw'
 import iconMacos from '~/assets/svgs/macos.svg?raw'
 import iconAndroid from '~/assets/svgs/android.svg?raw'
 import iconLinux from '~/assets/svgs/linux.svg?raw'
@@ -28,11 +28,9 @@ useSeoMeta({
 const windowsArch = ref<'x64' | 'arm64'>('x64')
 const linuxFormat = ref<'AppImage' | '.deb' | '.rpm'>('AppImage')
 
-const iconWindows11 = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#0078d4" d="M67.328 67.331h60.669V128H67.328zm-67.325 0h60.669V128H.003zM67.328 0h60.669v60.669H67.328zM.003 0h60.669v60.669H.003z"/></svg>'
-
 const windowsArchitectures = [
-  { label: 'x64' as const, matcher: /_x64(?:_|\b).*\.msi$/i, icon: iconWindows10 },
-  { label: 'arm64' as const, matcher: /_arm64(?:_|\b).*\.msi$/i, icon: iconWindows11 },
+  { label: 'x64' as const, matcher: /_x64(?:_|\b).*\.msi$/i },
+  { label: 'arm64' as const, matcher: /_arm64(?:_|\b).*\.msi$/i },
 ]
 
 const linuxFormats = [
@@ -140,7 +138,7 @@ onMounted(() => {
 
     <!-- ── Windows card (with architecture selector) ───────────── -->
     <a class="download-card" :href="windowsAsset.url" target="_blank" rel="noreferrer">
-      <span class="download-card__icon" aria-hidden="true" v-html="selectedWindowsArchitecture.icon"></span>
+      <span class="download-card__icon" aria-hidden="true" v-html="iconWindows"></span>
 
       <span class="download-card__platform">Windows</span>
 
