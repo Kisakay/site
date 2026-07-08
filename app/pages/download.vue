@@ -26,11 +26,17 @@ useSeoMeta({
 })
 
 const windowsArch = ref<'x64' | 'arm64'>('x64')
+const linuxArch = ref<'x64' | 'arm'>('x64')
 const linuxFormat = ref<'AppImage' | '.deb' | '.rpm'>('AppImage')
 
 const windowsArchitectures = [
   { label: 'x64' as const, matcher: /_x64(?:_|\b).*\.msi$/i },
   { label: 'arm64' as const, matcher: /_arm64(?:_|\b).*\.msi$/i },
+]
+
+const linuxArchitectures = [
+  { label: 'x64' as const, matcher: /(?:x64|x86_64|amd64)/i },
+  { label: 'arm' as const, matcher: /(?:arm64|aarch64)/i },
 ]
 
 const linuxFormats = [
@@ -72,7 +78,8 @@ const windowsAsset = computed(() => {
 const linuxAsset = computed(() => {
   const assets = latestRelease.value?.assets ?? []
   const fmt = linuxFormats.find(f => f.label === linuxFormat.value)!
-  const asset = assets.find(a => fmt.matcher.test(a.name))
+  const arch = linuxArchitectures.find(item => item.label === linuxArch.value)!
+  const asset = assets.find(a => fmt.matcher.test(a.name) && arch.matcher.test(a.name))
   return {
     file: asset?.name ?? 'Browse releases',
     url: asset?.browser_download_url ?? 'https://github.com/lqxp/app/releases',
@@ -161,11 +168,16 @@ onMounted(() => {
       <span class="download-card__arrow" aria-hidden="true">↓</span>
     </a>
 
-    <!-- ── Linux card (with format selector) ───────────────────── -->
+    <!-- ── Linux card (with architecture and format selectors) ─── -->
     <a class="download-card" :href="linuxAsset.url" target="_blank" rel="noreferrer">
       <span class="download-card__icon" aria-hidden="true" v-html="iconLinux"></span>
 
       <span class="download-card__platform">Linux</span>
+
+      <div class="format-pills" @click.stop>
+        <button v-for="arch in linuxArchitectures" :key="arch.label" class="pill" :class="{ active: linuxArch === arch.label }"
+          @click.prevent="linuxArch = arch.label">{{ arch.label }}</button>
+      </div>
 
       <div class="format-pills" @click.stop>
         <button v-for="fmt in linuxFormats" :key="fmt.label" class="pill" :class="{ active: linuxFormat === fmt.label }"
