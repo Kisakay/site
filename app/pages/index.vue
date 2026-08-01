@@ -105,7 +105,7 @@ const useCases = [
               <div class="mock-msg">
                 <span class="mock-avatar mock-avatar--github-kisakay"></span>
                 <div class="mock-msg__body">
-                  <strong>2h0 <time>02:32 AM</time></strong>
+                  <strong>kiss <time>02:32 AM</time></strong>
                   <p>hello</p>
                 </div>
               </div>
@@ -113,7 +113,7 @@ const useCases = [
               <div class="mock-msg">
                 <span class="mock-avatar mock-avatar--pink">2H</span>
                 <div class="mock-msg__body">
-                  <strong>2h01 <time>02:33 AM</time></strong>
+                  <strong>frej <time>02:33 AM</time></strong>
                   <p>heyy</p>
                   <div class="mock-reactions">
                     <span>❤ 1</span>
@@ -125,7 +125,7 @@ const useCases = [
               <div class="mock-msg mock-msg--deleted">
                 <span class="mock-avatar mock-avatar--pink">2H</span>
                 <div class="mock-msg__body">
-                  <strong>2h01 <time>02:33 AM</time></strong>
+                  <strong>frej <time>02:33 AM</time></strong>
                   <p class="mock-msg__deleted">Message deleted</p>
                   <p>eeee <span class="mock-msg__edited">(edited)</span></p>
                   <div class="mock-reactions"><span>❤ 1</span></div>
@@ -142,7 +142,7 @@ const useCases = [
             <div class="mock-presence__user">
               <span class="mock-avatar mock-avatar--github-kisakay"></span>
               <div>
-                <strong>2h0 <span class="mock-tag">Web</span></strong>
+                <strong>kiss <span class="mock-tag">Web</span></strong>
                 <p><span class="mock-dot"></span>Do not disturb</p>
               </div>
             </div>
@@ -336,7 +336,7 @@ const useCases = [
 }
 
 .mock-avatar--github-kisakay {
-  background-image: url("https://github.com/Kisakay.png");
+  background-image: url("https://github.com/vendicated.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
