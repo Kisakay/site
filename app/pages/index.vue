@@ -664,5 +664,9 @@ const useCases = [
   .mock-convos {
     display: none;
   }
+
+  .window-chrome__bar {
+    display: none;
+  }
 }
 </style>

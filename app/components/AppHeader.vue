@@ -18,6 +18,7 @@ function closeMenu() {
         <NuxtLink to="/" exact-active-class="is-active" @click="closeMenu">Home</NuxtLink>
         <NuxtLink to="/features" active-class="is-active" @click="closeMenu">Features</NuxtLink>
         <NuxtLink to="/download" active-class="is-active" @click="closeMenu">Download</NuxtLink>
+        <NuxtLink to="/about" active-class="is-active" @click="closeMenu">About</NuxtLink>
         <a href="/app" class="btn btn--primary btn--sm site-nav__cta">
           Open QxChat
         </a>
