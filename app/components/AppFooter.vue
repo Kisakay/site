@@ -15,6 +15,7 @@ const year = new Date().getFullYear()
         <NuxtLink to="/features">Features</NuxtLink>
         <NuxtLink to="/download">Download</NuxtLink>
         <NuxtLink to="/about">About</NuxtLink>
+        <a href="https://discord.wf/qxchat" target="_blank" rel="noreferrer">Discord</a>
         <a
           href="https://github.com/lqxp/"
           target="_blank"
