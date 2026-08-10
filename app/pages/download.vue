@@ -7,6 +7,8 @@ import iconWindows from '~/assets/svgs/windows.svg?raw'
 import iconMacos from '~/assets/svgs/macos.svg?raw'
 import iconAndroid from '~/assets/svgs/android.svg?raw'
 import iconLinux from '~/assets/svgs/linux.svg?raw'
+import iconIos from '~/assets/svgs/ios.svg?raw'
+import iconNixos from '~/assets/svgs/nixos.svg?raw'
 
 type ReleaseAsset = {
   name: string
@@ -21,7 +23,7 @@ type Release = {
 
 useSeoMeta({
   title: 'Download — QxChat',
-  description: 'Download the latest version of QxChat for Windows, Linux, macOS and Android.',
+  description: 'Download the latest version of QxChat for Windows, Linux, macOS, iOS, NixOS and Android.',
   ogType: 'website'
 })
 
@@ -47,13 +49,17 @@ const linuxFormats = [
 
 const otherPlatforms = [
   { name: 'macOS', matcher: /macos|darwin|\.dmg|\.pkg/i },
+  { name: 'iOS', matcher: /ios|\.ipa/i },
   { name: 'Android', matcher: /android|\.apk|\.aab/i },
+  { name: 'NixOS', matcher: /nix|flake/i },
 ]
 
-// ── Icônes plateformes (macOS / Android) ────────────
+// ── Icônes plateformes (macOS / iOS / Android / NixOS) ─
 const platformIcons: Record<string, string> = {
   macOS: iconMacos,
+  iOS: iconIos,
   Android: iconAndroid,
+  NixOS: iconNixos,
 }
 
 const { data: latestRelease } = await useFetch<Release>('https://qxch.at/api/release', {
@@ -158,12 +164,15 @@ onMounted(() => {
       <span class="download-card__arrow" aria-hidden="true">↓</span>
     </a>
 
-    <!-- ── macOS, Android cards ────────────────────────────────── -->
+    <!-- ── macOS, iOS, Android, NixOS cards ───────────────────── -->
     <a v-for="item in downloads" :key="item.name" class="download-card" :href="item.url" target="_blank"
       rel="noreferrer">
       <span class="download-card__icon" aria-hidden="true" v-html="platformIcons[item.name]"></span>
 
-      <span class="download-card__platform">{{ item.name }}</span>
+      <span class="download-card__platform">
+        {{ item.name }}
+        <span v-if="item.name === 'iOS'" class="download-card__unsigned">unsigned</span>
+      </span>
       <span class="download-card__file">{{ item.assetName }}</span>
       <span class="download-card__arrow" aria-hidden="true">↓</span>
     </a>
@@ -261,6 +270,18 @@ onMounted(() => {
   background: var(--cream);
   color: var(--ink);
   letter-spacing: 0.02em;
+}
+
+.download-card__unsigned {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  padding: 2px 7px;
+  border-radius: 99px;
+  background: #fff3cd;
+  color: #856404;
+  font-weight: 400;
+  vertical-align: middle;
+  margin-left: 6px;
 }
 
 .download-card:hover {
