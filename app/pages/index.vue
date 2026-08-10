@@ -657,15 +657,7 @@ const useCases = [
     padding-top: 0;
   }
 
-  .mock-app {
-    grid-template-columns: 1fr;
-  }
-
-  .mock-convos {
-    display: none;
-  }
-
-  .window-chrome__bar {
+  .window-chrome {
     display: none;
   }
 }
