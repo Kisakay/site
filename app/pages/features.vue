@@ -166,7 +166,7 @@ const features = [
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   overflow: hidden;
-  background: #fff;
+  background: var(--surface);
 }
 
 .showcase-grid img {

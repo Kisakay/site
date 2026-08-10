@@ -15,6 +15,12 @@ export default defineNuxtConfig({
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         { name: "theme-color", content: "#07111f" },
       ],
+      script: [
+        {
+          innerHTML: `(function(){try{var t=localStorage.getItem('qxchat-theme');if(!t||(t!=='dark'&&t!=='light')){t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)}catch(e){}})()`,
+          type: "text/javascript",
+        },
+      ],
       link: [
         { rel: "icon", href: "/favicon.ico", sizes: "any" },
         { rel: "icon", type: "image/svg+xml", href: "/app-icon.svg" },

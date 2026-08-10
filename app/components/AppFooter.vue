@@ -46,8 +46,13 @@ const year = new Date().getFullYear()
 .site-footer {
   margin-top: 80px;
   padding: 48px 0 28px;
-  background: var(--ink);
+  background: #11202f;
   color: rgba(255, 255, 255, 0.82);
+}
+
+[data-theme="dark"] .site-footer {
+  border-top: 1px solid var(--line);
+  background: #0a0e14;
 }
 
 .site-footer__inner {
@@ -66,7 +71,7 @@ const year = new Date().getFullYear()
 }
 
 .site-footer__brand p {
-  color: var(--cream);
+  color: #f0e0d9;
   margin-top: 6px;
   font-size: 0.9rem;
   max-width: 280px;
@@ -81,7 +86,7 @@ const year = new Date().getFullYear()
 }
 
 .site-footer__links a:not(.github-btn):hover {
-  color: var(--blue-400);
+  color: #4898f7;
 }
 
 .github-btn {
@@ -98,15 +103,15 @@ const year = new Date().getFullYear()
 }
 
 .github-btn:hover {
-  border-color: var(--blue-400);
-  color: var(--blue-400);
+  border-color: #4898f7;
+  color: #4898f7;
   background: rgba(255, 255, 255, 0.04);
 }
 
 .site-footer__meta {
   font-family: var(--font-mono);
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.6);
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   padding-top: 18px;
 }

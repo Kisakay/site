@@ -19,11 +19,17 @@
 :root {
   --blue-700: #1c71d8;   /* majeur — actions, liens, focus */
   --blue-400: #4898f7;   /* mineur — hover, accents secondaires */
+  --blue-50: #e8f0fe;    /* fond clair pour pills actives */
   --cream: #f0e0d9;      /* accent 1 — fonds chauds, badges */
   --slate: #4e658d;      /* accent 2 — texte secondaire */
   --ink: #11202f;        /* texte principal / bandes sombres */
   --paper: #fbfaf8;      /* fond de page */
+  --surface: #ffffff;    /* fond de carte / surfaces surélevées */
   --line: rgba(17, 32, 47, 0.12);
+
+  /* badges */
+  --amber-bg: #fff3cd;
+  --amber-text: #856404;
 
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -32,6 +38,22 @@
   --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+[data-theme="dark"] {
+  --blue-700: #5b8cff;
+  --blue-400: #3d6fdb;
+  --blue-50: rgba(91, 140, 255, 0.12);
+  --cream: #2a2520;
+  --slate: #8a9ab0;
+  --ink: #e2e6ed;
+  --paper: #0f1318;
+  --surface: #1a1e25;
+  --line: rgba(255, 255, 255, 0.1);
+  --amber-bg: #3d3200;
+  --amber-text: #f5c842;
+
+  color-scheme: dark;
 }
 
 * {
@@ -147,7 +169,7 @@ ul {
 .btn--secondary {
   border-color: var(--line);
   color: var(--ink);
-  background: #fff;
+  background: var(--surface);
 }
 
 .btn--secondary:hover {
@@ -160,13 +182,43 @@ ul {
   font-size: 0.88rem;
 }
 
+/* Theme toggle */
+.btn--icon {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 150ms ease, background 150ms ease;
+}
+
+.btn--icon:hover {
+  border-color: var(--slate);
+  background: var(--surface);
+}
+
+.btn--icon svg {
+  width: 18px;
+  height: 18px;
+}
+
 /* Signature device: reused "app window" chrome — hero mock + video frame */
 .window-chrome {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: #fff;
+  background: var(--surface);
   box-shadow: 0 16px 40px rgba(17, 32, 47, 0.08);
+}
+
+[data-theme="dark"] .window-chrome {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
 }
 
 .window-chrome__bar {

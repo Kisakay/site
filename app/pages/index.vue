@@ -575,7 +575,7 @@ const useCases = [
 
 .definition__panel li {
   padding: 12px 0;
-  border-top: 1px solid rgba(17, 32, 47, 0.12);
+  border-top: 1px solid var(--line);
   color: var(--ink);
   font-size: 0.93rem;
 }

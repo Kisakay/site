@@ -253,8 +253,8 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background: #fff;
-  transition: border-color 150ms ease, transform 150ms ease;
+  background: var(--surface);
+  transition: border-color 150ms ease, transform 150ms ease, background 150ms ease;
   text-decoration: none;
   color: inherit;
 }
@@ -277,8 +277,8 @@ onMounted(() => {
   font-size: 0.65rem;
   padding: 2px 7px;
   border-radius: 99px;
-  background: #fff3cd;
-  color: #856404;
+  background: var(--amber-bg);
+  color: var(--amber-text);
   font-weight: 400;
   vertical-align: middle;
   margin-left: 6px;
@@ -350,7 +350,7 @@ onMounted(() => {
 }
 
 .pill.active {
-  background: var(--blue-50, #e8f0fe);
+  background: var(--blue-50);
   color: var(--blue-700);
   border-color: var(--blue-400);
   font-weight: 600;
