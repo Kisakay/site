@@ -6,7 +6,7 @@
   xmlns="http://www.w3.org/2000/svg"
 >
   <!-- Icon area -->
-  <g transform="translate(50, 50) scale(5)" fill="#1c71d8">
+  <g transform="translate(68, 50) scale(5)" fill="#1c71d8">
     <g transform="translate(16 0) scale(-1 1)">
       <g transform="translate(0 1)">
         <path d="M5.939 0C2.666 0 0.009 1.987 0.009 4.438c0 2.236 2.215 4.082 5.092 4.387L3.88 11.26l4.249-2.7C10.318 7.906 12 6.309 12 4.438 12 1.988 9.213 0 5.939 0Z" />
@@ -14,10 +14,9 @@
       </g>
     </g>
   </g>
-
   <!-- "QxChat" text -->
   <text
-    x="155"
+    x="175"
     y="90"
     dominant-baseline="central"
     font-family="'JetBrains Mono', 'Space Grotesk', ui-monospace, SFMono-Regular, monospace"
