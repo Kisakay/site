@@ -34,7 +34,7 @@
         <!-- Bento Item 2: Large Visual App Showcase -->
         <div class="bento-item bento-image-large reveal-text-delay">
           <div class="image-bg-rect"></div>
-          <img src="/assets/overview_pc.png" alt="QxChat Desktop Client" class="showcase-cover-img" />
+          <img src="/assets/marketing/overview_white.png" alt="QxChat Desktop Client" class="showcase-cover-img" />
           <div class="bento-overlay">
             <div class="overlay-text">
               <h3>Desktop & Mobile Client</h3>
@@ -266,7 +266,7 @@
 
             <div class="showcase-card">
               <div class="showcase-card__img-wrap">
-                <img src="/assets/overview_pc.png" alt="Desktop and Mobile Experience" />
+                <img src="/assets/marketing/overview_white.png" alt="Desktop and Mobile Experience" />
               </div>
               <div class="showcase-card__content">
                 <h3>Native Lightweight Apps</h3>
